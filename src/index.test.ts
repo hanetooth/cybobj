@@ -1,32 +1,73 @@
 import { Cybobj } from './';
-import type { descriptorT, primalObjT } from './Types';
+import type { CybobjT, descriptorT, keyT, primalObjT } from './Types';
 
-describe('Test object assimilation', () => {
-  const data: primalObjT = {
-    name: {
-      value: 'John Doe',
-      onChange: jest.fn,
-      onAccess: jest.fn,
-    },
-    age: {
-      value: 'John Doe',
-      onChange: jest.fn,
-      onAccess: jest.fn,
-    },
-  };
+const data: primalObjT = {
+  name: {
+    value: 'Seven of Nine',
+    onChange: jest.fn,
+    onAccess: jest.fn,
+  },
+  subsection: {
+    value: 'Unimatix 01',
+    onChange: jest.fn,
+    onAccess: jest.fn,
+  },
+};
+
+const spyAndTestListeners = (
+  key: keyT,
+  value: descriptorT,
+  assimilatedObj: CybobjT,
+) => {
+  const accessSpy = jest.spyOn(value, 'onAccess');
+  const changeSpy = jest.spyOn(value, 'onChange');
+  const newVal = 'foo';
+
+  expect(assimilatedObj[key]).toBe(data[key]?.value);
+  expect(accessSpy).toHaveBeenCalled();
+  assimilatedObj[key] = newVal;
+  expect(changeSpy).toHaveBeenCalled();
+  expect(assimilatedObj[key]).toBe(newVal);
+  expect(accessSpy).toHaveBeenCalled();
+};
+
+describe('Test object assimilation as unexpendable', () => {
   const assimilatedObj = new Cybobj(data);
-  it('Should assimilate correctly', () => {
+  it('can instantiate as unexpendable', () => {
     Object.keys(data).forEach((key) => {
-      const value = data[key] as descriptorT;
-      const accessSpy = jest.spyOn(value, 'onAccess');
-      const changeSpy = jest.spyOn(value, 'onChange');
-      expect(assimilatedObj[key]).toBe(data[key]?.value);
-      expect(accessSpy).toHaveBeenCalled();
-      const newVal = 'foo';
-      assimilatedObj[key] = newVal;
-      expect(changeSpy).toHaveBeenCalled();
-      expect(assimilatedObj[key]).toBe(newVal);
-      expect(accessSpy).toHaveBeenCalled();
+      spyAndTestListeners(key, data[key] as descriptorT, assimilatedObj);
     });
+  });
+
+  it('is unexpendable', () => {
+    expect(() => {
+      assimilatedObj.add('position', {
+        value: 'Tertiary Adjunct',
+        onChange: jest.fn,
+        onAccess: jest.fn,
+      });
+    }).toThrow();
+  });
+});
+
+describe('Test object assimilation as expendable', () => {
+  const assimilatedObj = new Cybobj(data, true);
+  it('can instantiate as expendable', () => {
+    Object.keys(data).forEach((key) => {
+      spyAndTestListeners(key, data[key] as descriptorT, assimilatedObj);
+    });
+  });
+
+  it('is expendable', () => {
+    const key: keyT = 'position';
+    const descriptor: descriptorT = {
+      value: 'Tertiary Adjunct',
+      onChange: jest.fn,
+      onAccess: jest.fn,
+    };
+    assimilatedObj.add(key, descriptor);
+    // update original data object to spy
+    data[key] = descriptor;
+    spyAndTestListeners(key, descriptor, assimilatedObj);
   });
 });
