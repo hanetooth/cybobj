@@ -1,0 +1,8 @@
+{
+  "out": "./docs",
+  "name": "Cybobj",
+  "theme": "markdown",
+  "readme": "none",
+  "tsconfig": "./tsconfig.bundle.json",
+  "exclude": "./src/Types.ts"
+}
