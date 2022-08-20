@@ -1,4 +1,4 @@
-import { Mutator } from './';
+import { Cybobj } from './';
 import type { descriptorT, primalObjT } from './Types';
 
 describe('test object Mutation', () => {
@@ -14,7 +14,7 @@ describe('test object Mutation', () => {
       onAccess: jest.fn,
     },
   };
-  const mutatedObj = new Mutator(data);
+  const mutatedObj = new Cybobj(data);
   it('Should mutate correctly', () => {
     Object.keys(data).forEach((key) => {
       const value = data[key] as descriptorT;

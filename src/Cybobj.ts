@@ -1,6 +1,6 @@
-import type { descriptorT, keyT, MutatorT, primalObjT } from './Types';
+import type { descriptorT, keyT, CybobjT, primalObjT } from './Types';
 
-export default class Mutator implements MutatorT {
+export default class Cybobj implements CybobjT {
   /**
    * @type boolean
    */
@@ -8,7 +8,7 @@ export default class Mutator implements MutatorT {
   [key: keyT]: unknown;
 
   /**
-   * Construct given object to be listenable
+   * Assimilate given object to be listenable
    * @param {primalObjT} primalObj
    * @param {boolean} isExtensible
    */
@@ -27,9 +27,9 @@ export default class Mutator implements MutatorT {
    */
   add(key: keyT, descriptorT: descriptorT) {
     if (!this.isExtensible) {
-      throw 'Adding new property to a unexpendable Mutator.';
+      throw 'Adding new property to a unexpendable Cybobj.';
     }
-    this.makePropertyWatchable(key, descriptorT);
+    this.assimilateProp(key, descriptorT);
   }
 
   /**
@@ -37,7 +37,7 @@ export default class Mutator implements MutatorT {
    * @param {keyT} key
    * @param {descriptorT} descriptor
    */
-  protected makePropertyWatchable(key: keyT, descriptor: descriptorT): void {
+  protected assimilateProp(key: keyT, descriptor: descriptorT): void {
     const privateKey: keyT = `#${key}`;
     Object.defineProperty(this, key, {
       enumerable: true,

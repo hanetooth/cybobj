@@ -1,3 +1,3 @@
-import Mutator from './Mutator';
+import Cybobj from './Cybobj';
 
-export { Mutator };
+export { Cybobj };
