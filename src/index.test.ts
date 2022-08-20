@@ -1,7 +1,7 @@
 import { Cybobj } from './';
 import type { descriptorT, primalObjT } from './Types';
 
-describe('test object Mutation', () => {
+describe('Test object assimilation', () => {
   const data: primalObjT = {
     name: {
       value: 'John Doe',
@@ -14,18 +14,18 @@ describe('test object Mutation', () => {
       onAccess: jest.fn,
     },
   };
-  const mutatedObj = new Cybobj(data);
-  it('Should mutate correctly', () => {
+  const assimilatedObj = new Cybobj(data);
+  it('Should assimilate correctly', () => {
     Object.keys(data).forEach((key) => {
       const value = data[key] as descriptorT;
       const accessSpy = jest.spyOn(value, 'onAccess');
       const changeSpy = jest.spyOn(value, 'onChange');
-      expect(mutatedObj[key]).toBe(data[key]?.value);
+      expect(assimilatedObj[key]).toBe(data[key]?.value);
       expect(accessSpy).toHaveBeenCalled();
       const newVal = 'foo';
-      mutatedObj[key] = newVal;
+      assimilatedObj[key] = newVal;
       expect(changeSpy).toHaveBeenCalled();
-      expect(mutatedObj[key]).toBe(newVal);
+      expect(assimilatedObj[key]).toBe(newVal);
       expect(accessSpy).toHaveBeenCalled();
     });
   });
