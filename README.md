@@ -1,4 +1,4 @@
-# Cybobj
+# CybObj
 
 [![Continuous Integrations](https://github.com/hein-htut-aung/cybobj/actions/workflows/continuous-integrations.yaml/badge.svg?branch=main)](https://github.com/hein-htut-aung/cybobj/actions/workflows/continuous-integrations.yaml)
 [![License](https://badgen.net/github/license/hein-htut-aung/cybobj)](./LICENSE)
@@ -29,12 +29,39 @@ This module has an UMD bundle available through JSDelivr and Unpkg CDNs.
 <script src="https://cdn.jsdelivr.net/npm/cybobj"></script>
 
 <script>
-  // UMD module is exposed through the "Mutator" global variable.
-  console.log(Mutator);
+  // UMD module is exposed through the "CybObj" global variable.
+  console.log(CybObj);
 </script>
 ```
 
-## Documentation
+## Usage
+### Practicle Usage
+```javascript
+const assimilatedObj = new CybObj({
+  name: { // name of the property
+    value: 'John Doe', // value of the property
+    onChange: (key, oldaVal, newVal) => {
+      // on change listener
+      // will emit on: assimilatedObj['name'] = 'Dohn Joe'
+      console.log('Changed!', key, oldVal, newVal);
+    },
+    onAccess: (key, val) => {
+      // "Optional" on access listener
+      // will emit on: const someVar = assimilatedObj['name']
+      console.log('Accessed!', key, val);
+    },
+  },
+});
+
+assimilatedObj['name'] = "Tony Stark";
+// log: 'Changed!', 'name', 'John Doe', 'Tony Stark'
+
+const name = assimilatedObj['name'];
+// log: 'Accessed!', 'name', 'Tony Stark'
+
+```
+
+## API Documentation
 
 [Documentation generated from source files by Typedoc](./docs/README.md).
 
