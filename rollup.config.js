@@ -23,7 +23,7 @@ const banner = `/*!
 function createOutputOptions(options) {
   return {
     banner,
-    name: 'Cybobj',
+    name: 'CybObj',
     exports: 'named',
     sourcemap: true,
     ...options,
