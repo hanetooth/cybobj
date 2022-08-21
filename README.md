@@ -35,7 +35,7 @@ This module has an UMD bundle available through JSDelivr and Unpkg CDNs.
 ```
 
 ## Usage
-### Practicle Usage
+### Unexpendable (default)
 ```javascript
 const assimilatedObj = new CybObj({
   name: { // name of the property
@@ -59,6 +59,17 @@ assimilatedObj['name'] = "Tony Stark";
 const name = assimilatedObj['name'];
 // log: 'Accessed!', 'name', 'Tony Stark'
 
+```
+
+### Expendable
+Pass `true` as sencond parameter while instantiation object to be able to add new property with `add` .
+#### Adding new property example.
+```javascript
+assimilatedObj.add(key, {
+  value: value,
+  onChange: (key, oldVal, newVal) => {},
+  onAccess: (key, val) => {},
+});
 ```
 
 ## API Documentation
