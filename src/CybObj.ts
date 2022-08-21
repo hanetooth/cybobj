@@ -48,8 +48,9 @@ export default class CybObj implements CybObjT {
         return value;
       },
       set(newVal) {
+        const oldVal = this[privateKey];
         this[privateKey] = newVal;
-        descriptor.onChange?.(key, this[privateKey], newVal);
+        descriptor.onChange?.(key, oldVal, newVal);
       },
     });
     this[key] = descriptor.value;
