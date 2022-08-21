@@ -1,3 +1,3 @@
-import Cybobj from './Cybobj';
+import CybObj from './CybObj';
 
-export { Cybobj };
+export { CybObj };

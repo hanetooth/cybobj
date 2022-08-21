@@ -1,6 +1,6 @@
-import type { descriptorT, keyT, CybobjT, primalObjT } from './Types';
+import type { descriptorT, keyT, CybObjT, primalObjT } from './Types';
 
-export default class Cybobj implements CybobjT {
+export default class CybObj implements CybObjT {
   /**
    * @type boolean
    */
@@ -27,7 +27,7 @@ export default class Cybobj implements CybobjT {
    */
   add(key: keyT, descriptorT: descriptorT) {
     if (!this.isExtensible) {
-      throw 'Adding new property to a unexpendable Cybobj.';
+      throw 'Adding new property to a unexpendable CybObj.';
     }
     this.assimilateProp(key, descriptorT);
   }

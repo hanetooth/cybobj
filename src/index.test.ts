@@ -1,5 +1,5 @@
-import { Cybobj } from './';
-import type { CybobjT, descriptorT, keyT, primalObjT } from './Types';
+import { CybObj } from './';
+import type { CybObjT, descriptorT, keyT, primalObjT } from './Types';
 
 const data: primalObjT = {
   name: {
@@ -17,7 +17,7 @@ const data: primalObjT = {
 const spyAndTestListeners = (
   key: keyT,
   value: descriptorT,
-  assimilatedObj: CybobjT,
+  assimilatedObj: CybObjT,
 ) => {
   const accessSpy = jest.spyOn(value, 'onAccess');
   const changeSpy = jest.spyOn(value, 'onChange');
@@ -32,7 +32,7 @@ const spyAndTestListeners = (
 };
 
 describe('Test object assimilation as unexpendable', () => {
-  const assimilatedObj = new Cybobj(data);
+  const assimilatedObj = new CybObj(data);
   it('can instantiate as unexpendable', () => {
     Object.keys(data).forEach((key) => {
       spyAndTestListeners(key, data[key] as descriptorT, assimilatedObj);
@@ -51,7 +51,7 @@ describe('Test object assimilation as unexpendable', () => {
 });
 
 describe('Test object assimilation as expendable', () => {
-  const assimilatedObj = new Cybobj(data, true);
+  const assimilatedObj = new CybObj(data, true);
   it('can instantiate as expendable', () => {
     Object.keys(data).forEach((key) => {
       spyAndTestListeners(key, data[key] as descriptorT, assimilatedObj);

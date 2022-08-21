@@ -7,7 +7,7 @@ export type descriptorT = {
   onAccess?: (key: keyT, value: unknown) => void;
 };
 
-export interface CybobjT {
+export interface CybObjT {
   [key: keyT]: unknown;
   add: (key: keyT, descriptor: descriptorT) => void;
 }
