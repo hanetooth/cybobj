@@ -23,17 +23,26 @@ const spyAndTestListeners = (
   const changeSpy = jest.spyOn(value, 'onChange');
   const newVal = 'foo';
 
-  expect(assimilatedObj[key]).toBe(data[key]?.value);
-  expect(accessSpy).toHaveBeenCalled();
-  assimilatedObj[key] = newVal;
-  expect(changeSpy).toHaveBeenCalled();
-  expect(assimilatedObj[key]).toBe(newVal);
-  expect(accessSpy).toHaveBeenCalled();
+  const assimilatedVal = assimilatedObj[key];
+
+  it('can observe accessing value', () => {
+    expect(assimilatedVal).toBe(data[key]?.value);
+    expect(accessSpy).toHaveBeenCalledWith(key, assimilatedVal);
+  });
+
+  it('can observe value updates', () => {
+    assimilatedObj[key] = newVal;
+    expect(changeSpy).toHaveBeenCalledWith(key, assimilatedVal, newVal);
+  });
+
+  it('can update value just like as a normal object', () => {
+    expect(assimilatedObj[key]).toBe(newVal);
+  });
 };
 
 describe('Test object assimilation as unexpendable', () => {
   const assimilatedObj = new CybObj(data);
-  it('can instantiate as unexpendable', () => {
+  describe('can instantiate as unexpendable', () => {
     Object.keys(data).forEach((key) => {
       spyAndTestListeners(key, data[key] as descriptorT, assimilatedObj);
     });
@@ -52,13 +61,13 @@ describe('Test object assimilation as unexpendable', () => {
 
 describe('Test object assimilation as expendable', () => {
   const assimilatedObj = new CybObj(data, true);
-  it('can instantiate as expendable', () => {
+  describe('can instantiate as expendable', () => {
     Object.keys(data).forEach((key) => {
       spyAndTestListeners(key, data[key] as descriptorT, assimilatedObj);
     });
   });
 
-  it('is expendable', () => {
+  describe('is expendable', () => {
     const key: keyT = 'position';
     const descriptor: descriptorT = {
       value: 'Tertiary Adjunct',
@@ -66,7 +75,7 @@ describe('Test object assimilation as expendable', () => {
       onAccess: jest.fn,
     };
     assimilatedObj.add(key, descriptor);
-    // update original data object to spy
+    // update original data object to be able to spy
     data[key] = descriptor;
     spyAndTestListeners(key, descriptor, assimilatedObj);
   });
