@@ -1,3 +1,3 @@
-import Mutator from './Mutator';
-export { Mutator };
+import CybObj from './CybObj';
+export { CybObj };
 //# sourceMappingURL=index.d.ts.map

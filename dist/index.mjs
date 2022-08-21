@@ -4,13 +4,13 @@
  * Released under the MIT License.
  */
 
-var Mutator = /** @class */ (function () {
+var CybObj = /** @class */ (function () {
     /**
-     * Construct given object to be listenable
+     * Assimilate given object to be listenable
      * @param {primalObjT} primalObj
      * @param {boolean} isExtensible
      */
-    function Mutator(primalObj, isExtensible) {
+    function CybObj(primalObj, isExtensible) {
         if (isExtensible === void 0) { isExtensible = false; }
         var _this = this;
         /**
@@ -28,18 +28,18 @@ var Mutator = /** @class */ (function () {
      * @param {keyT} key
      * @param {descriptorT} descriptorT
      */
-    Mutator.prototype.add = function (key, descriptorT) {
+    CybObj.prototype.add = function (key, descriptorT) {
         if (!this.isExtensible) {
-            throw 'Adding new property to a unexpendable Mutator.';
+            throw 'Adding new property to a unexpendable CybObj.';
         }
-        this.makePropertyWatchable(key, descriptorT);
+        this.assimilateProp(key, descriptorT);
     };
     /**
      * Couple given listeners with acessor/mutator and assign to the given property ($key)
      * @param {keyT} key
      * @param {descriptorT} descriptor
      */
-    Mutator.prototype.makePropertyWatchable = function (key, descriptor) {
+    CybObj.prototype.assimilateProp = function (key, descriptor) {
         var privateKey = "#".concat(key);
         Object.defineProperty(this, key, {
             enumerable: true,
@@ -52,14 +52,15 @@ var Mutator = /** @class */ (function () {
             },
             set: function (newVal) {
                 var _a;
+                var oldVal = this[privateKey];
                 this[privateKey] = newVal;
-                (_a = descriptor.onChange) === null || _a === void 0 ? void 0 : _a.call(descriptor, key, this[privateKey], newVal);
+                (_a = descriptor.onChange) === null || _a === void 0 ? void 0 : _a.call(descriptor, key, oldVal, newVal);
             },
         });
         this[key] = descriptor.value;
     };
-    return Mutator;
+    return CybObj;
 }());
 
-export { Mutator };
+export { CybObj };
 //# sourceMappingURL=index.mjs.map

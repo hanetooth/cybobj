@@ -5,7 +5,7 @@ export declare type descriptorT = {
     onChange: (key: keyT, oldValue: unknown, newValue: unknown) => void;
     onAccess?: (key: keyT, value: unknown) => void;
 };
-export interface MutatorT {
+export interface CybObjT {
     [key: keyT]: unknown;
     add: (key: keyT, descriptor: descriptorT) => void;
 }

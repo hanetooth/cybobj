@@ -6,4 +6,4 @@ Cybobj
 
 ### Classes
 
-- [Mutator](classes/Mutator.md)
+- [CybObj](classes/CybObj.md)

@@ -1,10 +1,6 @@
 # CybObj
 
-[![Continuous Integrations](https://github.com/hein-htut-aung/cybobj/actions/workflows/continuous-integrations.yaml/badge.svg?branch=main)](https://github.com/hein-htut-aung/cybobj/actions/workflows/continuous-integrations.yaml)
-[![License](https://badgen.net/github/license/hein-htut-aung/cybobj)](./LICENSE)
-[![Package tree-shaking](https://badgen.net/bundlephobia/tree-shaking/cybobj)](https://bundlephobia.com/package/cybobj)
-[![Package minified & gzipped size](https://badgen.net/bundlephobia/minzip/cybobj)](https://bundlephobia.com/package/cybobj)
-[![Package dependency count](https://badgen.net/bundlephobia/dependency-count/reactcybobj)](https://bundlephobia.com/package/cybobj)
+Observable/Watchable javaScript objects.
 
 ## Installation
 

@@ -1,10 +1,10 @@
-[Cybobj](../README.md) / Mutator
+[Cybobj](../README.md) / CybObj
 
-# Class: Mutator
+# Class: CybObj
 
 ## Implements
 
-- `MutatorT`
+- `CybObjT`
 
 ## Indexable
 
@@ -14,24 +14,24 @@
 
 ### Constructors
 
-- [constructor](Mutator.md#constructor)
+- [constructor](CybObj.md#constructor)
 
 ### Properties
 
-- [isExtensible](Mutator.md#isextensible)
+- [isExtensible](CybObj.md#isextensible)
 
 ### Methods
 
-- [add](Mutator.md#add)
-- [makePropertyWatchable](Mutator.md#makepropertywatchable)
+- [add](CybObj.md#add)
+- [assimilateProp](CybObj.md#assimilateprop)
 
 ## Constructors
 
 ### constructor
 
-• **new Mutator**(`primalObj`, `isExtensible?`)
+• **new CybObj**(`primalObj`, `isExtensible?`)
 
-Construct given object to be listenable
+Assimilate given object to be listenable
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Construct given object to be listenable
 
 #### Defined in
 
-Mutator.ts:7
+CybObj.ts:7
 
 ## Methods
 
@@ -71,13 +71,13 @@ Add new listenable property to $self
 
 #### Implementation of
 
-MutatorT.add
+CybObjT.add
 
 ___
 
-### makePropertyWatchable
+### assimilateProp
 
-▸ `Protected` **makePropertyWatchable**(`key`, `descriptor`): `void`
+▸ `Protected` **assimilateProp**(`key`, `descriptor`): `void`
 
 Couple given listeners with acessor/mutator and assign to the given property ($key)
 
