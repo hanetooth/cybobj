@@ -1,6 +1,6 @@
 {
   "name": "cybobj",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "cdn": "dist/index.umd.js",
   "main": "dist/index.js",
@@ -45,7 +45,8 @@
     "lint": "eslint \"*/**/*.{ts,js,json}\"",
     "lint:fix": "eslint \"*/**/*.{ts,js,json}\" --fix",
     "build": "rollup --config ./rollup.config.js",
-    "prepublishOnly": "npm run doc && npm run lint && npm run test && npm run build"
+    "prepublish": "npm run doc && npm run lint && npm run test && npm run build",
+    "ci:publish": "npm run prepublish && npm publish"
   },
   "repository": {
     "type": "git",
