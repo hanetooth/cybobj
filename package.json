@@ -46,7 +46,7 @@
     "lint:fix": "eslint \"*/**/*.{ts,js,json}\" --fix",
     "build": "rollup --config ./rollup.config.js",
     "prepublish": "npm run doc && npm run lint && npm run test && npm run build",
-    "ci:publish": "npm run prepublish && npm run publish"
+    "ci:publish": "npm run prepublish && npm publish"
   },
   "repository": {
     "type": "git",
