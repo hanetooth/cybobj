@@ -52,10 +52,12 @@ jobs:
       - name: 'Checkout the repository'
         uses: 'actions/checkout@v3'
 
-      - name: 'Execute the publish script'
+      - name: 'Setup Node.js and npm'
         uses: './.github/actions/setup'
+
+      - name: 'Execute the publish script'
         with:
-          node-version: '16.x'
+          node: '16.x'
           registry-url: https://registry.npmjs.org/
           branch: publish/npm
         run: 'npm run ci:publish'
