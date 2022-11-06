@@ -54,12 +54,13 @@ jobs:
 
       - name: 'Setup Node.js and npm'
         uses: './.github/actions/setup'
-
-      - name: 'Execute the publish script'
         with:
           node: '16.x'
           registry-url: https://registry.npmjs.org/
           branch: publish/npm
+
+      - name: 'Execute the publish script'
         run: 'npm run ci:publish'
+        shell: bash
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
