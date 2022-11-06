@@ -59,7 +59,7 @@ jobs:
 
   deploy:
     name: 'Deploy bundled package to npm'
-    needs: [ lint, test, bundle ]
+    needs: [ 'lint', 'test', 'generate_doc', 'bundle' ]
     runs-on: 'ubuntu-latest'
     steps:
       - name: 'Checkout the repository'
@@ -67,13 +67,9 @@ jobs:
 
       - name: 'Setup Node.js and npm'
         uses: './.github/actions/setup'
-        with:
-          node: '16.x'
-          registry-url: https://registry.npmjs.org/
-          branch: publish/npm
 
       - name: 'Execute the publish script'
         run: 'npm publish'
-        shell: bash
+        shell: 'bash'
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}

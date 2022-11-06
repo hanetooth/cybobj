@@ -7,6 +7,8 @@ runs:
       uses: 'actions/setup-node@v3'
       with:
         node-version: '16.x'
+        registry-url: 'https://registry.npmjs.org/'
+        branch: 'publish/npm'
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
 
