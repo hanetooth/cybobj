@@ -61,5 +61,8 @@
   "bugs": {
     "url": "https://github.com/hein-htut-aung/cybobj/issues"
   },
-  "homepage": "https://github.com/hein-htut-aung/cybobj#readme"
+  "homepage": "https://github.com/hein-htut-aung/cybobj#readme",
+  "dependencies": {
+    "@changesets/cli": "^2.25.2"
+  }
 }
