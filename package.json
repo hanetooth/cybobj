@@ -1,6 +1,6 @@
 {
   "name": "cybobj",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Observable Javascript Object",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
